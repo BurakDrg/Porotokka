@@ -8,7 +8,7 @@
 - Add Appointment (Android, Manual)-> Burak
 - Appointment Page (Web)->Batuhan
 - Event Page (Show event notes)-> Batuhan
-- Server Processing-> Berk, Burak
+- Server Installation-> Berk, Burak
 - Heroku Deployment-> Berk, Burak
 - Database-> Berk, Burak
 
