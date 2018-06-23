@@ -1,0 +1,89 @@
+<html>
+<head>
+
+</head>
+<body>
+
+	<div id="calendar"></div>
+	<button onclick="prevMonth()">Previous</button>
+	<button onclick="nextMonth()">Next</button>
+
+	<script>
+
+		var current_date = new Date();
+
+		// Ay ve yıl seçimi
+		var month = current_date.getMonth();
+		var year = current_date.getFullYear();
+
+		generateCalendar(month, year);
+		
+		function generateCalendar(month, year) {
+
+			var days = ['Pzt', 'Salı', 'Çarş', 'Perş', 'Cuma', 'Cts', 'Pzr'];
+			var months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+
+			// Ayın adı
+			var month_name = months[month];
+
+			// Ocak 31, Şubat 28 etc.
+			var days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+			// Haftanın ilk günü hangisi? (-1 çünkü bizde hafta pazartesiden başlıyor, pazardan değil)
+			var first_day_of_week = new Date(year, month, 1).getDay() - 1;
+
+			// Ay kaç gün çekiyor? Artık yıl hesaplaması yok :(
+			var	days_in_month = days_in_months[month];
+
+			// Html'i generate edelim
+			var html = '<table>'; 
+			html += '<tr><td colspan="7">' + month_name + ' ' + year + '</td></tr>';
+
+			// Haftanın günlerini yazıyoruz
+			html += '<tr>';
+			for(var i = 0; i <= 6; i++) {
+				html += '<td>' + days[i] + '</td>';
+			}
+			html += '</tr>'
+
+			// Takvimi dolduralım
+			// Önce haftaları hesaplıyoruz, bir ayda en fazla 5 hafta olabilir.
+			html += '<tr>';
+			var day = 1;
+			for(var i=0; i<7; i++) {
+				// Bir haftada 7 gün var.
+				for(var j=0; j<7; j++) {
+					html += '<td>';
+					
+					// Hala aynı ayın içinde miyiz? 
+					if(day <= days_in_month && (i > 0 || j >= first_day_of_week)) {
+						html += day;
+						day++;
+					}
+					html += '</td>';
+				}
+				// Ay bitti mi?
+				if (day > days_in_month) {
+					break;
+				} else {
+					html += '</tr><tr>';
+				}
+			}
+			html += '</tr></table>';
+
+			document.getElementById("calendar").innerHTML = html;
+		}
+
+		function nextMonth(){
+			month++;
+			generateCalendar(month, year);
+		}
+		function prevMonth(){
+			month--;
+			generateCalendar(month, year);
+		}
+
+	</script>
+
+</body>
+</html>
