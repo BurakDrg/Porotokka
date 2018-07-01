@@ -6,7 +6,7 @@ public class Database extends SQLiteAssetHelper {
     public Database(Context context) {
         super(context, DATABASE_NAMES, null, DATABASE_VERSION);
     }
-CREATE TABLE events.eventTAble(
+CREATE TABLE events.eventsTable(
    EVENT_ID NUMERIC,
    EVENT_NAME TEXT,
    MESSAGE TEXT,
