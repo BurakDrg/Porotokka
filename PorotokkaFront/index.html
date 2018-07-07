@@ -5,14 +5,122 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS 
     <link rel="stylesheet" type = "text/css" href="css/fontawesome.css"/>
 	<link rel="stylesheet" type = "text/css" href="css/bootstrap.min.css"/>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	
+	<script src="js/main.js"></script>
 	<link rel="stylesheet" type = "text/css" href="css/main.css"/>
+	-->
+
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+	<link rel="stylesheet" type = "text/css" href="css/main.css"/>
+	
     <title>Batu Calendar</title>
   </head>
-  <body>
-	<div class = "container">
+<body>
+
+<div class="container">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+  Add Appointment
+</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#listModal">
+  List Appointments
+</button>
+</div>
+
+
+<!-- The myModal -->
+<div class="modal" id="addModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Appoinment</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+       <form action="" method="POST">
+        <div class="modal-body">
+		
+		<div class="form-group">
+			<label for="usr">Name</label>
+			<input type="text" class="form-control" id="usr">
+		</div>
+
+		<div class="form-group">
+			<label for="usr">Date</label>
+			<input type="date" class="form-control" id="usr">
+		</div>
+		
+
+		<div class="form-group row">
+		<div class="col-md-6">
+			<label for="usr">Start Time</label>
+			<input type="time" class="form-control" id="usr">
+		</div>
+		<div class="col-md-6">
+			<label for="usr">End Time</label>
+			<input type="time" class="form-control" id="usr">
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label for="sel1">Repeat Period:</label>
+			<select class="form-control" id="sel1">	
+				<option>No Repeat</option>
+				<option>Weekly</option>
+				<option>Bi-Weekly</option>
+				<option>Monthly</option>
+				<option>Annually</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="comment">Additional Comments:</label>
+			<textarea class="form-control" rows="4" id="comment"></textarea>
+		</div> 
+
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+		</div> 
+    </form>
+    </div>
+  </div>
+</div> <!--myModal -->
+
+
+
+
+
+
+<!-- The listModal -->
+<div class="modal" id="listModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">List of Appoinments</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+       <form action="" method="POST">
+        <div class="modal-body">
+			<div class = "container">
 		<div class = "row">
 			
 			<!-- burası -------------------------------->
@@ -31,11 +139,12 @@
 						
 						document.write('<div class="info">')
 						document.write('<h2 class="title">Appoinment ' + i.toString() + '</h2>')
-						document.write('<p class="desc">' + "Some text related with appointment" + i.toString() + '</p>')
+						document.write('<p class="desc">' + "Comments on Appoinment " + i.toString() + '    </p>')
 							document.write('<ul>')
-								document.write('<li style="width:33%;"><button type="button" class="btn btn-outline-primary">Primary</button></li>')
-								document.write('<li style="width:33%;"><button type="button" class="btn btn-outline-secondary">Primary</button></li>')
-								document.write('<li style="width:34%;"><button type="button" class="btn btn-outline-danger">Primary</button></li>')
+								document.write('<li style="width:33%;"><button type="button" class="btn btn-outline-primary">Edit</button></li>')
+								document.write('<li style="width:34%;"><button type="button" class="btn btn-outline-danger">Delete</button></li>')
+								document.write('<li style="width:33%;"><button type="button" class="btn btn-outline-secondary">Preview</button></li>')
+								
 							document.write('</ul>')
 						document.write('</div>')
 						
@@ -50,10 +159,14 @@
 		
 		</div>
 	</div>
-
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+		
+		
+		</div> 
+	  </form>
+    </div>
+  </div>
+</div>
+<!--listModal -->
 	
   </body>
 </html>
