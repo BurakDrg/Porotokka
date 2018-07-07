@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type = "text/css" href="css/fontawesome.css"/>
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type = "text/css" href="css/main.css"/>
+    <title>Batu Calendar</title>
+  </head>
+  <body>
+	<div class = "container">
+		<div class = "row">
+			
+			<!-- burası -------------------------------->
+			<div class="[ col-xs-12 col-sm-offset-2 ]">
+				<ul class="event-list">
+				<script>
+				    var i;
+					for (i = 0; i < 6; i++) {
+					document.write('<li>')
+						document.write('<time datetime="2014-07-20">')
+						document.write('<span class="day">' + "4" + '</span>')
+						document.write('<span class="month">' + "ocak"+ '</span>')	
+						document.write('<span class="year">' + "2014" + '</span>')
+						document.write('<span class="time">12:00 AM</span>')
+						document.write('</time>')
+						
+						document.write('<div class="info">')
+						document.write('<h2 class="title">Appoinment ' + i.toString() + '</h2>')
+						document.write('<p class="desc">' + "Some text related with appointment" + i.toString() + '</p>')
+							document.write('<ul>')
+								document.write('<li style="width:33%;"><button type="button" class="btn btn-outline-primary">Primary</button></li>')
+								document.write('<li style="width:33%;"><button type="button" class="btn btn-outline-secondary">Primary</button></li>')
+								document.write('<li style="width:34%;"><button type="button" class="btn btn-outline-danger">Primary</button></li>')
+							document.write('</ul>')
+						document.write('</div>')
+						
+						
+					document.write('</li>')
+					
+					}
+					</script>
+				</ul>
+			</div>	
+			<!------------------------------------------>
+		
+		</div>
+	</div>
+
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	
+  </body>
+</html>
