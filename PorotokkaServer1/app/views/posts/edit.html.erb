@@ -1,3 +1,164 @@
-<h1> Edit </h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<%= render 'form' %>
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="js/postsFormat.js"></script>
+  <link rel="stylesheet" type = "text/css" href="css/postsFormat.css"/>
+	
+    <title>Calendar</title>
+  </head>
+<body>
+
+<div class="container">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+  Add Appointment
+</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#listModal">
+  List Appointments
+</button>
+</div>
+
+
+<!-- The myModal -->
+<div class="modal" id="addModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Appoinment</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+       <form action="create" method="POST">
+        <div class="modal-body">
+		
+		<div class="form-group">
+			<label for="event_name">Name</label>
+			<input type="text" class="form-control" id="event_name">
+		</div>
+
+		<div class="form-group">
+			<label for="event_date">Date</label>
+			<input type="date" class="form-control" id="event_date">
+		</div>
+		
+
+		<div class="form-group row">
+		<div class="col-md-6">
+			<label for="event_time">Start Time</label>
+			<input type="time" class="form-control" id="event_time">
+		</div>
+		<div class="col-md-6">
+			<label for="usr">End Time</label>
+			<input type="time" class="form-control" id="usr">
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label for="sel1">Repeat Period:</label>
+			<select class="form-control" id="sel1">	
+				<option>No Repeat</option>
+				<option>Weekly</option>
+				<option>Bi-Weekly</option>
+				<option>Monthly</option>
+				<option>Annually</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="comment">Additional Comments:</label>
+			<textarea class="form-control" rows="4" id="comment"></textarea>
+		</div> 
+
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+		</div> 
+    </form>
+    </div>
+  </div>
+</div> <!--myModal -->
+
+
+
+
+
+
+<!-- The listModal -->
+<div class="modal" id="listModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">List of Appoinments</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+       <form id = "formList" action="" method="POST">
+        <div class="modal-body">
+			<div class = "container">
+		<div class = "row">
+			
+			<!-- burası -------------------------------->
+			<div class="[ col-xs-12 col-sm-offset-2 ]">
+				<ul class="event-list">
+				
+				    <% for post in @posts %>
+					
+					<li>
+						<time datetime=<%=h post.event_date %>>
+							<span class="day">' + "4" + '</span>
+							<span class="month">' + "ocak"+ '</span>	
+							<span class="year">' + "2014" + '</span>
+							<span class="time">12:00 AM</span>
+						</time>
+						
+						<div class="info">
+						<h2 class="title"><%=h post.event_name %></h2>
+						<p class="desc"> Comments on Appoinment </p>
+							<ul>
+								<li style="width:33%;"><button type="submit" class="btn btn-outline-primary" onclick=setFormAction("update")>Edit</button></li>
+								<li style="width:34%;"><button type="submit" class="btn btn-outline-danger" onclick=setFormAction("destroy")>Delete</button></li>
+								<li style="width:33%;"><button type="submit" class="btn btn-outline-secondary" onclick=setFormAction("show")>Preview</button></li>
+							</ul>
+						</div>
+						
+						
+					</li>
+					<% end %>
+					
+					
+				</ul>
+			</div>	
+			<!------------------------------------------>
+		
+		</div>
+	</div>
+		
+		
+		</div> 
+	  </form>
+    </div>
+  </div>
+</div>
+<!--listModal -->
+<script>
+function setFormAction(action) {
+document.getElementById("formList").action = action;
+}
+</script>	
+  </body>
+</html>
