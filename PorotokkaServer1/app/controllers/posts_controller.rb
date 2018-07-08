@@ -1,44 +1,79 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-  def index
-    @post = Post.all
+def index
+  @posts = Post.find(:all)
+
+  respond_to do |format|
+    format.html # index.html.erb
+    format.xml  { render :xml => @posts }
   end
+end
 
-  def new
-    @post = Post.new
+def new
+  @post = Post.new
+
+  respond_to do |format|
+    format.html # new.html.erb
+    format.xml  { render :xml => @post }
   end
+end
 
-  def create
-    @post = Post.new(post_params)
+def create
+  @post = Post.new(params[:post])
 
+  respond_to do |format|
     if @post.save
-      redirect_to @post
+      flash[:notice] = 'Post was successfully created.'
+      format.html { redirect_to(@post) }
+      format.xml  { render :xml => @post, :status => :created,
+	                :location => @post }
     else
-      render 'new'
+      format.html { render :action => "new" }
+      format.xml  { render :xml => @post.errors,
+	                :status => :unprocessable_entity }
     end
   end
+end
 
-  def show
+def show
+  @post = Post.find(params[:id])
+
+  respond_to do |format|
+    format.html # show.html.erb
+    format.xml  { render :xml => @post }
   end
+end
 
-  def edit
-  end
+def edit
+  @post = Post.find(params[:id])
+end
 
-  def destroy
-    @post.destroy
-    redirect_to root_path
-  end
+def update
+  @post = Post.find(params[:id])
 
-  def update
-    if @post.update(post_params)
-      redirect_to @post
+  respond_to do |format|
+    if @post.update_attributes(params[:post])
+      flash[:notice] = 'Post was successfully updated.'
+      format.html { redirect_to(@post) }
+      format.xml  { head :ok }
     else
-      render 'edit'
+      format.html { render :action => "edit" }
+      format.xml  { render :xml => @post.errors,
+	                :status => :unprocessable_entity }
     end
   end
+end
 
-  private
+def destroy
+  @post = Post.find(params[:id])
+  @post.destroy
 
+  respond_to do |format|
+    format.html { redirect_to(posts_url) }
+    format.xml  { head :ok }
+  end
+end
+private
   def find_post
     @post = Post.find(params[:id])
   end
