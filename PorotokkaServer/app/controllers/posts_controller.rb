@@ -53,6 +53,6 @@ end
   end
 
   def post_params
-    params.require(:post).permit(:event_name, :event_date, :event_time)
+    params.permit(:event_name, :event_date, :event_time)
   end
 end
