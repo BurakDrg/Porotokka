@@ -15545,3 +15545,14 @@ Processing by PostsController#index as HTML
 Completed 200 OK in 284ms (Views: 273.0ms | ActiveRecord: 1.7ms)
 
 
+Started GET "/posts" for 127.0.0.1 at 2018-07-19 16:22:06 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/berk/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:3
+  Rendered posts/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 359ms (Views: 335.7ms | ActiveRecord: 0.7ms)
+
+
