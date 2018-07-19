@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PorotokkaServer1</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+ <title>Scheduler on Rails</title>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+ <%= stylesheet_link_tag 'dhtmlxscheduler', media: 'all', 'data-turbolinks-track' => true %>
+ <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+ <%= javascript_include_tag 'dhtmlxscheduler', 'data-turbolinks-track' => true %>
+ <%= csrf_meta_tags %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<%= yield %>
 
-  <body>
-    <%= link_to "Home", root_path %>
-    <%= link_to "New Post", new_post_path %>
-    <%= yield %>
-  </body>
+</body>
 </html>

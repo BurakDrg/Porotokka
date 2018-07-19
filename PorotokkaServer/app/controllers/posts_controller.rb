@@ -53,7 +53,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    NotificationJob.perform_later guest
+
     #render json: {event_name:@post.event_name, event_date:@post.event_date, event_time:@post.event_time}
   end
 
