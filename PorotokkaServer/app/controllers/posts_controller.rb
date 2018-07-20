@@ -69,11 +69,11 @@ class PostsController < ApplicationController
       waitTime = difDay.to_f + (difHour/24).to_f + (difMin-15).to_f/(24*60).to_f
       NotificationWorker.perform_in(waitTime.days,@post.event_name)
       puts "Gün"
-    elsif difHour > 10
+    elsif difHour > 0
       waitTime = difHour.to_f + (difMin-15).to_f/(60).to_f
       NotificationWorker.perform_in(waitTime.hours,@post.event_name)
       puts "Saat"
-    elsif difMin > 150
+    elsif difMin > 15
       waitTime = difMin-15
       NotificationWorker.perform_in(waitTime.minutes,@post.event_name)
       puts "Dakika"
