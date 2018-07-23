@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+<% @post.each do |post| %>
+  <br>
+    <div><%= post.event_date %></div>
+  <div><%= post.event_name %></div>
+
+  <%= link_to "Edit", edit_post_path(post) %>
+  <%= link_to "Delete", post_path(post), method: :delete %>
+
+  <br>
+
+<% end %>
+</html>
+
+
 <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:800px;'>
  <div class="dhx_cal_navline">
    <div class="dhx_cal_prev_button">&nbsp;</div>
@@ -10,7 +26,7 @@
  </div>
  <div class="dhx_cal_header">
  </div>
- <div class="dhx_cal_data">
+<div class="dhx_cal_data">
  </div>
 </div>
 
