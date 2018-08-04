@@ -3,8 +3,11 @@ class PostsController < ApplicationController
   #after_action :notification, only: [:create]
   skip_before_action :verify_authenticity_token
   def index
-    @post = Post.all
-      
+    @post = if params[:term]
+    Post.where('event_name LIKE ?', "%#{params[:term]}%")
+  else
+    Post.all
+  end  
   end
     
 
@@ -118,7 +121,7 @@ class PostsController < ApplicationController
 
   def post_params
     #params.permit(:event_name, :event_date, :event_time)
-    params.require(:post).permit(:event_name, :event_date, :event_time)
+    params.require(:post).permit(:event_name, :event_date, :event_time, :term)
   end
 
   def startWorker

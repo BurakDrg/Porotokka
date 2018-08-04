@@ -101,42 +101,6 @@
 		color: rgb(30, 30, 30);
 		text-decoration: none;
 	} 
-    .event-list > li > .social > ul > li {    
-        padding: 0px;
-    }
-    .event-list > li > .social > ul > li > a {
-        padding: 3px 0px;
-	} 
-	.event-list > li > .info > ul > li:hover,
-	.event-list > li > .social > ul > li:hover {
-		color: rgb(30, 30, 30);
-		background-color: rgb(200, 200, 200);
-	}
-	.facebook a,
-	.twitter a,
-	.google-plus a {
-		display: block;
-		width: 100%;
-		color: rgb(75, 110, 168) !important;
-	}
-	.twitter a {
-		color: rgb(79, 213, 248) !important;
-	}
-	.google-plus a {
-		color: rgb(221, 75, 57) !important;
-	}
-	.facebook:hover a {
-		color: rgb(255, 255, 255) !important;
-		background-color: rgb(75, 110, 168) !important;
-	}
-	.twitter:hover a {
-		color: rgb(255, 255, 255) !important;
-		background-color: rgb(79, 213, 248) !important;
-	}
-	.google-plus:hover a {
-		color: rgb(255, 255, 255) !important;
-		background-color: rgb(221, 75, 57) !important;
-	}
 
 	@media (min-width: 768px) {
 		.event-list > li {
@@ -220,6 +184,10 @@
             </div>    
 			<!-- burası -------------------------------->
 			<div class="[ col-sm-6 col-sm-offset-2 ]">
+                <%= form_tag(posts_path, method: :get) do %>
+                  <%= text_field_tag :term %>
+                  <%= submit_tag 'Search' %>
+                <% end %>
 				<ul class="event-list">
 <% @post.each do |p| %>
 					<li>
@@ -235,8 +203,8 @@
 						<h2 class="title"><%=p.event_name %></h2>
 						<p class="desc"> <%=p.event_date %> <br> <%=p.event_time %></p>
 							<ul>
-								<li style="width:50%;"><%= link_to 'Edit', :action => 'edit', :id => p.id ,class:"btn btn-primary btn-sm"%></li>
-								<li style="width:50%;"><%= link_to 'Destroy', :action => 'destroy', :id => p.id, :confirm => 'Are you sure?', class:"btn btn-outline-danger btn-sm" %></li>
+								<li style="width:50%;"><%= link_to 'Edit', :action => 'edit', :id => p.id, class:"btn btn-primary btn-sm"%></li>
+								<li style="width:50%;"><%= link_to 'Destroy', :action => 'destroy', :id => p.id, class:"btn btn-outline-danger btn-sm" %></li>
 							</ul>
 						</div>
 					</li>
