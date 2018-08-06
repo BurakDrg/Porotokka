@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @post = Post.all
+    @post = if params[:term]
+    Post.where('event_name LIKE ?', "%#{params[:term]}%")
+  else
+    Post.all
+  end
   end
 
   def all
