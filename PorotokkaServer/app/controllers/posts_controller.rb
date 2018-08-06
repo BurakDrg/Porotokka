@@ -2,9 +2,13 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :destroy]
   after_action :notification, only: [:create]
   skip_before_action :verify_authenticity_token
+
   def index
     @post = Post.all
+  end
 
+  def all
+    @post = Post.all
   end
 
   def new
@@ -57,23 +61,23 @@ class PostsController < ApplicationController
     difMin = 60 - createdDate[14,16].to_i
     waitTime = 0.to_f
 
-    if difYear > 0
+    if difYear > 1000
       waitTime = difYear.to_f + (difMonth/12).to_f + (difDay/365).to_f + difHour.to_f/(365*24).to_f + (difMin-15).to_f/(365*24*60).to_f
       NotificationWorker.perform_in(waitTime.years,@post.event_name)
       puts "Yıl"
-    elsif difMonth > 0
+    elsif difMonth > 10000
       waitTime = difMonth.to_f + (difDay/30).to_f + difHour.to_f/(30*24).to_f + (difMin-15).to_f/(30*24*60).to_f
       NotificationWorker.perform_in(waitTime.months,@post.event_name)
       puts "Ay"
-    elsif difDay > 0
+    elsif difDay > 10000
       waitTime = difDay.to_f + (difHour/24).to_f + (difMin-15).to_f/(24*60).to_f
       NotificationWorker.perform_in(waitTime.days,@post.event_name)
       puts "Gün"
-    elsif difHour > 0
+    elsif difHour > 10000
       waitTime = difHour.to_f + (difMin-15).to_f/(60).to_f
       NotificationWorker.perform_in(waitTime.hours,@post.event_name)
       puts "Saat"
-    elsif difMin > 15
+    elsif difMin > 150000
       waitTime = difMin-15
       NotificationWorker.perform_in(waitTime.minutes,@post.event_name)
       puts "Dakika"
