@@ -10,7 +10,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="stylesheets" type = "text/css" href="stylesheets/postsFormat.css"/>
-
    <style>
           body {
 		padding: 60px 0px;
@@ -101,6 +100,42 @@
 		color: rgb(30, 30, 30);
 		text-decoration: none;
 	}
+    .event-list > li > .social > ul > li {
+        padding: 0px;
+    }
+    .event-list > li > .social > ul > li > a {
+        padding: 3px 0px;
+	}
+	.event-list > li > .info > ul > li:hover,
+	.event-list > li > .social > ul > li:hover {
+		color: rgb(30, 30, 30);
+		background-color: rgb(200, 200, 200);
+	}
+	.facebook a,
+	.twitter a,
+	.google-plus a {
+		display: block;
+		width: 100%;
+		color: rgb(75, 110, 168) !important;
+	}
+	.twitter a {
+		color: rgb(79, 213, 248) !important;
+	}
+	.google-plus a {
+		color: rgb(221, 75, 57) !important;
+	}
+	.facebook:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(75, 110, 168) !important;
+	}
+	.twitter:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(79, 213, 248) !important;
+	}
+	.google-plus:hover a {
+		color: rgb(255, 255, 255) !important;
+		background-color: rgb(221, 75, 57) !important;
+	}
 	@media (min-width: 768px) {
 		.event-list > li {
 			position: relative;
@@ -166,42 +201,35 @@
 	}
 
       </style>
-
-
-
     <title>Calendar</title>
   </head>
 <body>
 
-
+<div class="container">
+    <%= link_to 'Create New Appointment',:action => 'new', class:"btn btn-primary"%> |
+</div>
 <div class="container">
     <div class = "row">
-			<div class="[ col-xl-6 col-xl-offset-2 ]">
-                 <%= link_to 'Create New Appointment',:action => 'new', class:"btn btn-primary"%>
-            </div>
+
 			<!-- burası -------------------------------->
-			<div class="[ col-sm-6 col-sm-offset-2 ]">
-                <%= form_tag(posts_path, method: :get) do %>
-                  <%= text_field_tag :term %>
-                  <%= submit_tag 'Search' %>
-                <% end %>
+			<div class="[ col-xs-12 col-sm-offset-2 ]">
 				<ul class="event-list">
 <% @post.each do |p| %>
 					<li>
-						<time datetime="">
+						<time datetime=<%=p.event_date %>>
 
-							<span class="day"></span>
-							<span class="month"></span>
+							<span class="day"><%=p.event_date %></span>
+							<span class="month"><%=p.event_time %></span>
 							<span class="year"></span>
 							<span class="time"></span>
 						</time>
 
 						<div class="info">
 						<h2 class="title"><%=p.event_name %></h2>
-						<p class="desc"> <%=p.event_date %> <br> <%=p.event_time %></p>
+						<p class="desc"> Comments on Appoinment </p>
 							<ul>
-								<li style="width:50%;"><%= link_to 'Edit', :action => 'edit', :id => p.id, class:"btn btn-primary btn-sm"%></li>
-								<li style="width:50%;"><%= link_to 'Destroy', :action => 'destroy', :id => p.id, class:"btn btn-outline-danger btn-sm" %></li>
+								<li style="width:50%;"><%= link_to 'Edit', :action => 'edit', :id => p.id ,class:"btn btn-primary btn-sm"%></li>
+								<li style="width:50%;"><%= link_to 'Destroy', :action => 'destroy', :id => p.id, :confirm => 'Are you sure?', :method => :post ,class:"btn btn-outline-danger btn-sm" %></li>
 							</ul>
 						</div>
 					</li>

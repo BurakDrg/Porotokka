@@ -1,3 +1,39 @@
-<h1>Porotokka</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<%= render 'form' %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type = "text/css" href="stylesheets/postsFormat.css"/>
+
+
+    <title>Calendar</title>
+  </head>
+<body>
+
+    <h3>Enter New Appoinment</h3>
+
+  <div class="container">
+       <%= bootstrap_form_for(@post) do |f| %>
+
+            <%= f.text_field :event_name %>
+            <%= f.text_field :event_date %>
+            <%= f.text_field :event_time %>
+
+            <%= f.submit "Save Changes" %>
+
+
+    <% end %>
+
+
+	</div>
+
+
+
+  </body>
+</html>
