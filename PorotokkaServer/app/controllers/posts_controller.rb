@@ -61,23 +61,23 @@ class PostsController < ApplicationController
     difMin = 60 - createdDate[14,16].to_i
     waitTime = 0.to_f
 
-    if difYear > 1000
+    if difYear > 1
       waitTime = difYear.to_f + (difMonth/12).to_f + (difDay/365).to_f + difHour.to_f/(365*24).to_f + (difMin-15).to_f/(365*24*60).to_f
       NotificationWorker.perform_in(waitTime.years,@post.event_name)
       puts "Yıl"
-    elsif difMonth > 10000
+    elsif difMonth > 1
       waitTime = difMonth.to_f + (difDay/30).to_f + difHour.to_f/(30*24).to_f + (difMin-15).to_f/(30*24*60).to_f
       NotificationWorker.perform_in(waitTime.months,@post.event_name)
       puts "Ay"
-    elsif difDay > 10000
+    elsif difDay > 1
       waitTime = difDay.to_f + (difHour/24).to_f + (difMin-15).to_f/(24*60).to_f
       NotificationWorker.perform_in(waitTime.days,@post.event_name)
       puts "Gün"
-    elsif difHour > 10000
+    elsif difHour > 1
       waitTime = difHour.to_f + (difMin-15).to_f/(60).to_f
       NotificationWorker.perform_in(waitTime.hours,@post.event_name)
       puts "Saat"
-    elsif difMin > 150000
+    elsif difMin > 15
       waitTime = difMin-15
       NotificationWorker.perform_in(waitTime.minutes,@post.event_name)
       puts "Dakika"
