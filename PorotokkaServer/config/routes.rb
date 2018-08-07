@@ -7,6 +7,7 @@ root :to => 'home#index'
   resources :posts
   root 'posts#index'
 
+  get 'list', to: 'posts#index'
   get '/all', to: 'posts#all'
 
   match "home/data", :to => "home#data", :as => "data", :via => "get"

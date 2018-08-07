@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :destroy]
-  after_action :notification, only: [:create]
+  #after_action :notification, only: [:create]
   skip_before_action :verify_authenticity_token
 
   def index
